@@ -1,11 +1,11 @@
 FROM hexpm/elixir:1.15.4-erlang-24.3.4.13-debian-bullseye-20230612 AS builder
-
+ENV DB_TYPE=postgresql
 ENV MIX_ENV=prod
 
 WORKDIR /explorer
-COPY . .
-
 RUN apt update && apt install -y git
+
+COPY . .
 
 RUN mix local.hex --force
 RUN mix local.rebar --force
